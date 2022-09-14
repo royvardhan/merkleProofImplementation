@@ -10,9 +10,9 @@ contract Whitelist {
         merkleRoot = _merkleRoot;
     }
 
-    function verify(bytes32[] calldata _proof, uint64 _maxAllowanceToMint) pubic view returns(bool) {
+    function verify(bytes32[] calldata _proof, uint64 _maxAllowanceToMint) public view returns(bool) {
         bytes32 leaf = keccak256(abi.encode(msg.sender, _maxAllowanceToMint));
-        bool verified = MerkelProof.verify(_proof, merkleRoot, leaf);
+        bool verified = MerkleProof.verify(_proof, merkleRoot, leaf);
         return verified;
     }
 
